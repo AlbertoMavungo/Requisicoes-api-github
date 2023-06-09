@@ -38,7 +38,7 @@ main {
   width: 60%; /* se for uma tela menor que 980px vai se adaptar a 70% */
   max-width: 960px; /* quando chegar em 980px para de aumentar */
   box-shadow: rgba(0, 0, 0, 0.3) 0px 25px 50px -12px;
-  background-color: #fff;
+  background-color:#eef4f2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,7 +120,9 @@ main {
   font-weight: 400;
   line-height: 23px;
 }
-
+.events{
+  margin-top: 10px;
+}
 /* REPOSITORIES */
 
 .container .profile-data .repositories h2{
@@ -129,6 +131,7 @@ main {
 }
 
 .container .profile-data .repositories ul{
+  gap: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -150,6 +153,24 @@ main {
 
 .container .profile-data.hide{
   display: none;
+}
+
+.infos-repo{
+  border-radius:7px ;
+  border: 1px solid grey;
+  background-color: rgb(252, 251, 251)
+}
+.info-repos-plus{
+  margin: auto 5px 10px;
+}
+
+.info-repos-plus li{
+  padding: 3px;
+  background-color: #694ec1;
+  border-radius:7px ;
+  border: 1px solid;
+  border-color: transparent;
+  color:#ffffff;
 }
 
 .follow{

@@ -14,12 +14,7 @@ document.getElementById('input-search').addEventListener('keyup', (e) => {
 })
 
 async function userDataGeneral(userName) {
-    const token = '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';
-    const response = await fetch(`https://api.github.com/users/${userName}`, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    })
+    const response = await fetch(`https://api.github.com/users/${userName}`)
     return await response.json()
 }
 
@@ -29,12 +24,7 @@ async function repos(userName) {
 }
 
 async function events(userName) {
-    const token = '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';
-    const response = await fetch(`https://api.github.com/users/${userName}/events?per_page=10`, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    })
+    const response = await fetch(`https://api.github.com/users/${userName}/events?per_page=10`)
     return await response.json()
 }
 events()
@@ -80,7 +70,17 @@ function getUserRepositories(userName) {
         let repositoriesItens = ""
 
         reposData.forEach(repo => {
-            repositoriesItens += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`
+            repositoriesItens += `<li class='infos-repo'>
+                                    <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                                    <div>
+                                        <ul class='info-repos-plus'>
+                                            <li> 🍴${repo.forks}</li>
+                                            <li> 👀${repo.watchers}</li>
+                                            <li> 👅${repo.language}</li>
+                                            <li> ⭐${repo.stargazers_count}</li>
+                                        </ul>
+                                    </div>
+                                </li>`
         });
 
         document.querySelector('.profile-data').innerHTML += `<div class="repositories section">
@@ -95,14 +95,15 @@ const getEvents = (userName) => {
         let eventsItens = ""
         eventsDatas.forEach(event => {
             if (event.type === 'CreateEvent' || event.type === 'PushEvent') {
-                eventsItens += `<li>${event.repo.name}</li>`
+                eventsItens += `<li class="events">${event.repo.name} - ${event.type}</li>`
             }
+    
         })
-        document.querySelector('.profile-data').innerHTML += `<div class="">
+        document.querySelector('.profile-data').innerHTML += `<div>
                                                                 <h2>Eventos</h2>
                                                                 <ul>${eventsItens}</ul>
                                                             </div>`
-
+                                                            
     })
 }
 
